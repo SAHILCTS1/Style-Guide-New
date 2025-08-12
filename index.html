@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retail Style Guide Generator - Google Taxonomy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-tags"></i> Retail Style Guide Generator</h1>
+                <p>Google Product Taxonomy Integration for Category Managers</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Taxonomy Navigator -->
+            <section class="taxonomy-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-sitemap"></i> Product Category Navigator</h2>
+                    <p>Navigate through 5,595 Google Product Categories with cascading filters</p>
+                </div>
+
+                <div class="filters-container">
+                    <!-- Department (Level 1) -->
+                    <div class="filter-group">
+                        <label for="department">
+                            <i class="fas fa-building"></i> Department
+                            <span class="level-indicator">Level 1</span>
+                        </label>
+                        <select id="department" class="filter-select">
+                            <option value="">Select Department...</option>
+                        </select>
+                        <div class="filter-info">
+                            <span id="dept-count" class="count">0 options</span>
+                        </div>
+                    </div>
+
+                    <!-- Category (Level 2) -->
+                    <div class="filter-group">
+                        <label for="category">
+                            <i class="fas fa-folder"></i> Category
+                            <span class="level-indicator">Level 2</span>
+                        </label>
+                        <select id="category" class="filter-select" disabled>
+                            <option value="">Select Category...</option>
+                        </select>
+                        <div class="filter-info">
+                            <span id="cat-count" class="count">0 options</span>
+                        </div>
+                    </div>
+
+                    <!-- Sub-category (Level 3) -->
+                    <div class="filter-group">
+                        <label for="subcategory">
+                            <i class="fas fa-folder-open"></i> Sub-category
+                            <span class="level-indicator">Level 3</span>
+                        </label>
+                        <select id="subcategory" class="filter-select" disabled>
+                            <option value="">Select Sub-category...</option>
+                        </select>
+                        <div class="filter-info">
+                            <span id="subcat-count" class="count">0 options</span>
+                        </div>
+                    </div>
+
+                    <!-- Product Type (Level 4) -->
+                    <div class="filter-group">
+                        <label for="producttype">
+                            <i class="fas fa-cube"></i> Product Type
+                            <span class="level-indicator">Level 4</span>
+                        </label>
+                        <select id="producttype" class="filter-select" disabled>
+                            <option value="">Select Product Type...</option>
+                        </select>
+                        <div class="filter-info">
+                            <span id="prodtype-count" class="count">0 options</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manual Product Type Entry -->
+                <div class="manual-entry-section">
+                    <div class="section-divider">
+                        <span>OR</span>
+                    </div>
+                    <div class="manual-entry">
+                        <label for="manual-product">
+                            <i class="fas fa-edit"></i> Manual Product Type Entry
+                        </label>
+                        <div class="input-group">
+                            <input type="text" id="manual-product" placeholder="Enter product type manually...">
+                            <button id="find-match" class="btn-secondary">
+                                <i class="fas fa-search"></i> Find Match
+                            </button>
+                        </div>
+                        <div id="match-results" class="match-results"></div>
+                    </div>
+                </div>
+
+                <!-- Selected Path Display -->
+                <div class="selected-path">
+                    <h3><i class="fas fa-route"></i> Selected Path</h3>
+                    <div id="breadcrumb" class="breadcrumb">
+                        <span class="placeholder">No selection made</span>
+                    </div>
+                    
+                    <!-- Generate Button -->
+                    <div class="generate-action">
+                        <button id="generate-taxonomy" class="btn-primary" disabled>
+                            <i class="fas fa-magic"></i> Generate Style Guide
+                        </button>
+                        <p class="generate-hint">Select all taxonomy levels to generate style guide</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Validation -->
+            <section class="validation-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-check-circle"></i> Product Validation</h2>
+                    <p>Validate your product data against Google Product Taxonomy</p>
+                </div>
+
+                <div class="validation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-title">Product Title</label>
+                            <input type="text" id="product-title" placeholder="Enter product title...">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Product Description</label>
+                            <textarea id="product-description" placeholder="Enter product description..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-price">Price</label>
+                            <input type="text" id="product-price" placeholder="Enter price (e.g., $29.99)">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-brand">Brand</label>
+                            <input type="text" id="product-brand" placeholder="Enter brand name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-material">Material</label>
+                            <input type="text" id="product-material" placeholder="Enter material (e.g., Cotton, Polyester)">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-color">Color</label>
+                            <input type="text" id="product-color" placeholder="Enter color">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-size">Size</label>
+                            <input type="text" id="product-size" placeholder="Enter size (e.g., S, M, L, XL)">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-image">Product Image URL</label>
+                            <input type="url" id="product-image" placeholder="Enter image URL (optional)">
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button id="validate-product" class="btn-secondary">
+                            <i class="fas fa-check"></i> Validate Product
+                        </button>
+                        <button id="generate-styleguide" class="btn-primary" disabled>
+                            <i class="fas fa-magic"></i> Generate Style Guide
+                        </button>
+                        <button id="clear-form" class="btn-outline">
+                            <i class="fas fa-times"></i> Clear Form
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Auto-suggestions -->
+                <div id="auto-suggestions" class="auto-suggestions"></div>
+
+                <!-- Validation Results -->
+                <div id="validation-results" class="validation-results"></div>
+            </section>
+
+            <!-- Style Guide Output -->
+            <section class="output-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-file-alt"></i> Style Guide Output</h2>
+                    <p>Generated style guide based on your selections</p>
+                </div>
+
+                <div id="style-guide-output" class="style-guide-output">
+                    <div class="placeholder-content">
+                        <i class="fas fa-arrow-up"></i>
+                        <p>Select a product category above to generate your style guide</p>
+                    </div>
+                </div>
+
+                <div class="output-actions">
+                    <button id="export-json" class="btn-secondary" disabled>
+                        <i class="fas fa-download"></i> Export JSON
+                    </button>
+                    <button id="export-csv" class="btn-secondary" disabled>
+                        <i class="fas fa-file-csv"></i> Export CSV
+                    </button>
+                    <button id="copy-output" class="btn-outline" disabled>
+                        <i class="fas fa-copy"></i> Copy to Clipboard
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Retail Style Guide Generator | Powered by Google Product Taxonomy</p>
+            <p>Last updated: <span id="taxonomy-date">Loading...</span> | Total Categories: 5,595</p>
+        </footer>
+
+        <!-- Style Guide Output Modal -->
+        <div id="styleguide-modal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-file-alt"></i> Generated Style Guide</h2>
+                    <button id="close-modal" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <div id="styleguide-content" class="styleguide-display">
+                        <!-- Style guide content will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button id="download-pdf" class="btn-primary">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                    <button id="copy-styleguide" class="btn-secondary">
+                        <i class="fas fa-copy"></i> Copy to Clipboard
+                    </button>
+                    <button id="close-styleguide" class="btn-outline">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <p>Loading Google Product Taxonomy...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Generation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
