@@ -210,6 +210,11 @@ Once you've selected a category path:
 - **API Integration**: Direct connection to e-commerce platforms
 - **Analytics Dashboard**: Track categorization patterns
 
+### Developer Documentation
+- **API Reference**: See `docs/API_REFERENCE.md`
+- **Components Guide**: See `docs/COMPONENTS.md`
+- **Usage Examples**: See `docs/USAGE_EXAMPLES.md`
+
 ### Contributing
 This is a specialized tool for retail category management. For feature requests or bug reports, please document specific use cases and taxonomy requirements.
 
